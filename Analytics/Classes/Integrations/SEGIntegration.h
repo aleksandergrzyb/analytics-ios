@@ -43,8 +43,11 @@
 // @see https://segment.com/docs/spec/alias/
 - (void)alias:(SEGAliasPayload *)payload;
 
-// Reset is invoked when the user logs out, and any data saved about the user should be cleared.
+// Reset is invoked when the user logs out, and any data saved about the user should be cleared, also cancels any ongoing requests.
 - (void)reset;
+
+// Clear user data is invoked when the user logs out, and any data saved about the user should be cleared.
+- (void)clearUserData;
 
 // Flush is invoked when any queued events should be uploaded.
 - (void)flush;
