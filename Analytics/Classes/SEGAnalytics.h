@@ -265,13 +265,25 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
  @method
 
  @abstract
- Reset any user state that is cached on the device.
+ Reset any user state that is cached on the device, but also cancels any ongoing requests.
 
  @discussion
  This is useful when a user logs out and you want to clear the identity. It will clear any
  traits or userId's cached on the device.
  */
 - (void)reset;
+
+/*!
+ @method
+
+ @abstract
+ Reset any user state that is cached on the device.
+
+ @discussion
+ This is useful when a user logs out and you want to clear the identity. It will clear any
+ traits or userId's cached on the device.
+ */
+- (void)clearUserData;
 
 /*!
  @method

@@ -457,6 +457,12 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     [self callIntegrationsWithSelector:_cmd arguments:nil options:nil sync:false];
 }
 
+- (void)clearUserData
+{
+    [self resetAnonymousId];
+    [self callIntegrationsWithSelector:_cmd arguments:nil options:nil sync:false];
+}
+
 - (void)resetAnonymousId
 {
     self.cachedAnonymousId = [self loadOrGenerateAnonymousID:YES];

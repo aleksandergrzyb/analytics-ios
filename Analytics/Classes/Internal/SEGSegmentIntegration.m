@@ -520,6 +520,22 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     }];
 }
 
+- (void)clearUserData
+{
+    [self dispatchBackgroundAndWait:^{
+        [self.analytics.storage removeKey:SEGUserIdKey];
+#if TARGET_OS_TV
+        [self.analytics.storage removeKey:SEGTraitsKey];
+#else
+        [self.analytics.storage removeKey:kSEGUserIdFilename];
+        [self.analytics.storage removeKey:kSEGTraitsFilename];
+#endif
+
+        self.userId = nil;
+        self.traits = [NSMutableDictionary dictionary];
+    }];
+}
+
 - (void)notifyForName:(NSString *)name userInfo:(id)userInfo
 {
     dispatch_async(dispatch_get_main_queue(), ^{
